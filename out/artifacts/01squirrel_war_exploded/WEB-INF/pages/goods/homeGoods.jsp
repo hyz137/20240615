@@ -17,6 +17,7 @@
     <script type="text/javascript" src="<%=basePath%>js/index.bundle.js" ></script>
     <link rel="stylesheet" href="<%=basePath%>css/materialize-icon.css" />
     <link rel="stylesheet" href="<%=basePath%>css/user.css" />
+     <script src="<%=basePath%>js/JaScript.js"></script>
     <script>
         function showLogin() {
             if($("#signup-show").css("display")=='block'){
@@ -109,6 +110,88 @@
 
 
     </script>
+<style>
+
+/*对整体部分的控制，浏览图片的窗口*/
+.banner{
+    width: 1024px;
+    height: 512px;
+    border: 2px solid #ccc;
+    margin: 100px auto;
+    position: relative;
+    overflow: hidden;
+}
+/*图片的初步设置后面的动态内容会在js中实现*/
+.img{
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+/*让没长图片向左浮动*/
+.img li{
+    float: left;
+}
+/*圆点承载部分的设计*/
+.num{
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 0;
+}
+/*圆点设计*/
+.num li{
+    width: 10px;
+    height: 10px;
+    background:rgba(0,0,0,0.5);
+    border-radius: 100%;
+    display: inline-block;
+    margin: 0 5px;
+    cursor: pointer;
+}
+/*按钮部分初始不可见*/
+.btn{
+    display: none;
+}
+/*按钮形状设计*/
+.btn span{
+    display: block;
+    width: 50px;
+    height: 100px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 40px;
+    line-height: 100px;
+    text-align: center;
+    cursor:pointer;
+}
+/*上一个设计*/
+.btn .prev{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -50px;
+}
+/*下一个设计*/
+.btn .next{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -50px;
+}
+/*对按妞动态呈现的变换进行类选择器的设计为js代码部分进行铺垫*/
+.num .active{
+    background-color: #fff;
+}
+.hide{
+    display: none;
+}
+
+
+
+</style>
+
 <body ng-view="ng-view">
 <!--
     描述：顶部
@@ -351,29 +434,49 @@
 
         描述：右侧banner（图片）部分
     -->
-    <div class="slider-wapper">
-        <div class="slider" style="height: 440px; touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-            <ul class="slides" style="height: 400px;">
-                <li class="active" style="opacity: 1;">
-                    <a href="<%=basePath%>goods/homeGoods">
-                        <div class="bannerimg">
+<%--    <div class="slider-wapper">--%>
+<%--        <div class="slider" style="height: 440px; touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">--%>
+<%--            <ul class="slides" style="height: 400px;">--%>
+<%--                <li class="active" style="opacity: 1;">--%>
+<%--                    <a href="<%=basePath%>goods/homeGoods">--%>
+                        <div style="">
                             <ul class="bannerul">
                                 <p class="text1">Hello：</p>
-                                <p class="text2">欢迎来到【】校园二手市场。临近毕业季的</p>
+                                <p class="text2">欢迎来到北京信息科技大学校园二手市场。临近毕业季的</p>
                                 <p class="text3">你，是否有太多的闲置与校友分享，为了追求更好的校园服</p>
                                 <p class="text4">务，我们打造了一个全新的校园平台——<span>校园二手市场</p>
                                 <p class="text5">这里有更多的闲置分享，更自由的校园话题讨论，你想要的，都在这里。</p>
                                 <p class="text6">加入校园二手市场，你的大学，应更精彩。</p>
                             </ul>
-                          <!--   <div class="logoimg">
-                                <img src="../img/p_logo.jpg" />
-                            </div> -->
                         </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
+<%--                    </a>--%>
+<%--                </li>--%>
+<%--            </ul>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+
+    <!--轮播图整体div-->
+<div class="banner">
+    <!--无序列表承载轮播的图片-->
+    <ul class="img">
+        <li><a href="#"><img src="../img/1.png" style="  height: 507px; width: 1020px;margin-left: 3px" alt="第1张图片"></a></li>
+        <li><a href="#"><img src="../img/3.jpg" style="  height: 507px; width: 1020px;margin-left: 3px" alt="第1张图片"></a></li>
+        <li><a href="#"><img src="../img/2.jpg" style="  height: 507px; width: 1020px;margin-left: 3px" alt="第1张图片"></a></li>
+        <li><a href="#"><img src="../img/4.png" style="  height: 507px; width: 1020px;margin-left: 3px" alt="第1张图片"></a></li>
+        <li><a href="#"><img src="../img/5.png" style="  height: 507px; width: 1020px;margin-left: 3px" alt="第1张图片"></a></li>
+    </ul>
+    <!--用来放置圆点具体实施在js代码中呈现-->
+    <ul class="num"></ul>
+    <!--左右点击按钮-->
+    <div class="btn">
+        <span class="prev"><</span>
+        <span class="next">></span>
     </div>
+</div>
+
+
+
+
     <!--
 
         描述：最新发布
